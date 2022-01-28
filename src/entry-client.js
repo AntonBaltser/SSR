@@ -1,7 +1,9 @@
 import { createSSRApp } from 'vue'
 import { createWebHistory } from 'vue-router'
 import createRouter from './routing/router.js'
+
 import App from './App.vue'
+
 
 const app = createSSRApp(App)
 

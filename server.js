@@ -6,6 +6,21 @@ const manifest = require('./dist/server/ssr-manifest.json')
 
 const server = express()
 
+
+const cookieParser = require('cookie-parser')
+const uploadFile = require('./src/modules/requests/uploadFile')
+const registration = require('./src/modules/requests/registration')
+const auth = require('./src/modules/requests/auth')
+const verification = require('./src/modules/mixins/verification')
+
+server.use(cookieParser())
+server.use(express.json());
+server.use(express.urlencoded());
+const setHeaders = require('./src/modules/requests/setHeders')
+
+
+
+
 const appPath = path.join(__dirname, './dist', 'server', manifest['app.js'])
 const createApp = require(appPath).default
 
@@ -13,6 +28,34 @@ server.use('/img', express.static(path.join(__dirname, './dist/client', 'img')))
 server.use('/js', express.static(path.join(__dirname, './dist/client', 'js')))
 server.use('/css', express.static(path.join(__dirname, './dist/client', 'css')))
 server.use('/favicon.ico', express.static(path.join(__dirname, './dist/client', 'favicon.ico')))
+
+
+
+server.all('*', (req, res, next) => {
+    setHeaders(req, res, next)
+});
+
+server.post('*',  (req, res) => {
+    switch(req.url){
+        case '/verificationName':
+            return verification(req, res, {'user_name': req.body.name})
+
+        case '/verificationEmail':
+            return verification(req, res, {'user_email': req.body.email})
+
+        case '/uploadPhoto':
+            return uploadFile(req, res)
+
+        case '/auth':
+            return  auth(req, res)
+
+        case '/registration':
+            return   registration(req, res)
+
+        default:
+            return "";
+    }
+})
 
 server.get('*', async (req, res) => {
     const { app, router } = createApp()
@@ -35,6 +78,8 @@ server.get('*', async (req, res) => {
     })
 })
 
-console.log('Сервер запущен по адресу: http://localhost:8080')
-
-server.listen(8080)
+let app = server.listen(8080, () =>{
+    let host = app.address().address
+    let port = app.address().port
+    console.log("Сервер рабтает по адрессу http://%s:%s", host, port)
+})

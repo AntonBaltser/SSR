@@ -38,10 +38,10 @@
 </template>
 
 <script>
-import LoginForm from "./LoginForm";
-import  RulesForm from "./RulesForm";
-import RegForm from "./RegForm";
-import QuestForm from "./QuestForm";
+import LoginForm from "./FormLogin";
+import  RulesForm from "./FormRules";
+import RegForm from "./FormReg";
+import QuestForm from "./FormQuest";
 
 export default {
   components: {

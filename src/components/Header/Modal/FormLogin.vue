@@ -27,14 +27,16 @@
 
       >
     </div>
-<!--    <button type="button" @click="finalRegistration1" class="btn btn-primary">Войти</button>-->
+    <button type="button" @click="finalRegistration1" class="btn btn-primary">Войти</button>
   </form>
 
 
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
+import store from '../../../store/'
+
 export default {
   data() {
     return {
@@ -45,7 +47,7 @@ export default {
   computed:{
     loginToStore(){
       console.log(this.email, this.password)
-      return this.$store.commit('authentification',{
+      return store.commit('authentification',{
         'email': this.email,
         'password': this.password
       });
@@ -53,16 +55,17 @@ export default {
   },
   methods: {
 
-    // async finalRegistration1() {
-    //   try {
-    //     const res = await axios.post(`http://localhost:4000/auth`,
-    //         this.$store.getters.loginAutrntification, {withCredentials: true}
-    //     );
-    //     console.log(res)
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-    // }
+    async finalRegistration1() {
+      // store.dispatch('authLogin')
+      try {
+        const res = await axios.post(`http://localhost:8080/auth`,
+            store.getters.loginAutrntification, {withCredentials: true}
+        );
+        console.log(res)
+      } catch (e) {
+        console.error(e);
+      }
+    }
   }
 }
 </script>

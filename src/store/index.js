@@ -1,8 +1,8 @@
 import { createStore } from 'vuex'
-import openModal from './modules/openModalStore'
+import openModalStore from './modules/openModalStore'
 
 export default new createStore({
     modules: {
-        openModal
+        openModalStore
     }
 })
