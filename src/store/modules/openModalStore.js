@@ -16,10 +16,10 @@ export default {
 //         //     console.log(res)
 //         //    state.header = res
 //         },
-//         // authentification(state, login) {
-//                 // state.modal.login.fromValue.email = login.email
-//                 // state.modal.login.fromValue.password = login.password
-//         // },
+        authentification(state, login) {
+                state.modal.login.fromValue.email = login.email
+                state.modal.login.fromValue.password = login.password
+        },
 //         registration(state, params){
 //             state.modal.registration.form.fileName = params.fileName
 //             state.modal.registration.form.name = params.name
@@ -34,14 +34,14 @@ export default {
 //         }
     },
     state:{
-//         header: {
+        header: {
 //             // buttons: '',
-//             // modal:{
-//                 // login: {
-//                 //     fromValue: {
-//                 //         name: '',
-//                 //         password: ''
-//                 //     }
+            modal:{
+                login: {
+                    fromValue: {
+                        name: '',
+                        password: ''
+                    }
 //                 // },
 //                 // registration: {
 //                 //     rules:" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!",
@@ -55,9 +55,9 @@ export default {
 //                 //         gender: '',
 //                 //         fileName: ''
 //                 //     },
-//                 // },
-//             // }
-//         }
+                },
+            }
+        }
     },
     getters:{
 //         rules(state){

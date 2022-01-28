@@ -10,9 +10,9 @@
           aria-describedby="emailHelp"
           placeholder="Enter email"
           v-model="email"
-
+          @change="loginToStore"
       >
-<!--      @change="loginStore"-->
+
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
@@ -23,9 +23,9 @@
           id="password"
           placeholder="Password"
           v-model="password"
+          @change="loginToStore"
 
       >
-<!--      @change="loginStore"-->
     </div>
 <!--    <button type="button" @click="finalRegistration1" class="btn btn-primary">Войти</button>-->
   </form>
@@ -43,14 +43,16 @@ export default {
     }
   },
   computed:{
-  //   loginStore(){
-  //     return this.$store.commit('authentification',{
-  //       'email': this.email,
-  //       'password': this.password
-  //     });
-  //   }
-  // },
+    loginToStore(){
+      console.log(this.email, this.password)
+      return this.$store.commit('authentification',{
+        'email': this.email,
+        'password': this.password
+      });
+    }
+  },
   methods: {
+
     // async finalRegistration1() {
     //   try {
     //     const res = await axios.post(`http://localhost:4000/auth`,
@@ -60,7 +62,7 @@ export default {
     //   } catch (e) {
     //     console.error(e);
     //   }
-    }
+    // }
   }
 }
 </script>
