@@ -1,33 +1,27 @@
 
 <template>
 
-  <form>
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input
-          class="form-control"
-          id="email"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          v-model="email"
-          @change="loginToStore"
-      >
+<!--    <div class="modal-dialog modal-dialog-centered text-center">-->
+<!--      <div class="modal-content justify-content-center align-items-center">-->
+  <form class="col-8">
+  <img class="m-4" src="http://localhost:9000/project/registration/users/dsf.jpg" alt="" width="72" height="57">
+  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Password"
-          v-model="password"
-          @change="loginToStore"
 
-      >
-    </div>
-    <button type="button" @click="finalRegistration1" class="btn btn-primary">Войти</button>
+  <div class="form-floating mb-2">
+    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" v-model="email" @change="loginToStore">
+    <label for="floatingInput">Email address</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="password" @change="loginToStore">
+    <label for="floatingPassword">Password</label>
+  </div>
+
+  <button class="w-70 btn btn-lg btn-primary"
+          @click="finalRegistration1"
+          type="button"
+  >Sign in</button>
+  <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
   </form>
 
 
@@ -56,7 +50,6 @@ export default {
   methods: {
 
     async finalRegistration1() {
-      // store.dispatch('authLogin')
       try {
         const res = await axios.post(`http://localhost:8080/auth`,
             store.getters.loginAutrntification, {withCredentials: true}
@@ -69,3 +62,10 @@ export default {
   }
 }
 </script>
+
+
+<style>
+input{
+  text-align: center;
+}
+</style>

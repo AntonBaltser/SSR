@@ -1,21 +1,16 @@
-// import VueAxios from "vue-axios";
 
-const axios = require('axios')
-// import { createApp } from 'vue'
-// import App from '../../App.vue'
-//
-// const app = createApp(App)
-// app.use(VueAxios, axios)
+// const axios = require('axios')
+
 export default {
     actions: {
-       async authLogin(){
-         await axios.post('http://localhost:8080/verificationName',
-              this.state.header.modal.login.fromValue
-          ).then(res => {
-                    console.log(res)
-                  // commit('startState', res.data.header)
-              })
-        }
+       // async authLogin(){
+       //   await axios.post('http://localhost:8080/verificationName',
+       //        this.state.header.modal.login.fromValue
+       //    ).then(res => {
+       //              console.log(res)
+       //            // commit('startState', res.data.header)
+       //        })
+       //  },
     },
 //
     mutations: {
@@ -37,8 +32,8 @@ export default {
             state.header.modal.registration.form.gender = params.gender
         }
     },
-    // state: () => ({
-    state: {
+    state: () => ({
+    // state: {
         header: {
 //             // buttons: '',
             modal: {
@@ -63,8 +58,8 @@ export default {
                 },
             },
         }
-    },
-    // }),
+    // },
+    }),
     getters: {
 //         rules(state){
 //             return state.modal.registration.rules

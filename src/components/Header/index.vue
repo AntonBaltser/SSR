@@ -22,16 +22,6 @@
       :openLog = "openL"
       :openReg = "openR"
   />
-<!--      :openLog = "openL"-->
-
-  <!--      -->
-  <!--      :openReg = "openR"-->
-  <!--      v-if="openModal"-->
-  <!--      @close="openModal = false, openL = false, openR = false "-->
-
-
-
-
 
 </template>
 
@@ -51,12 +41,7 @@ export default {
       openR: false
     }
   },
-  // created() {
-  //   this.$store.dispatch('getInformationStart')
-  // this.stateParams = this.$store.getters.stateHeaderStart
-  //   console.log(this.stateParams)
-  // },
-  // methods:{}
+
 }
 
 </script>

@@ -1,8 +1,18 @@
 <template>
   <div class="modal fade show ">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
+    <div class="modal-dialog modal-dialog-centered text-center">
+      <div class="modal-content justify-content-center align-items-center">
+
+        <div class="d-flex justify-content-end w-100">
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            @click="closeModal"
+        ></button>
+      </div>
+
           <LoginForm
                     v-if="openLog"
           />
@@ -22,18 +32,12 @@
               @close="closeModal"
           />
 
-          <button
-              type="button"
-              class="close"
-              aria-label="Close"
-              @click="closeModal"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+
+
         </div>
       </div>
     </div>
-  </div>
+<!--  </div>-->
 
 </template>
 

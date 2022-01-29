@@ -21,7 +21,7 @@
     </div>
 
     <div class="form-group">
-      <img :src = this.avatar alt="">
+      <img :src = this.avatar class="img-thumbnail rounded-circle mt-3 mb-3" alt="">
     </div>
     
 
