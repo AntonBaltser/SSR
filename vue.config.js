@@ -3,7 +3,6 @@ const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 
 module.exports = {
-
     chainWebpack: webpackConfig => {
         // Необходимо отключать cache-loader, иначе в сборке для клиента
         // будут использоваться кэшированные компоненты из сборки для сервера
