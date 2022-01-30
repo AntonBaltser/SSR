@@ -58,6 +58,7 @@ server.post('*',  (req, res) => {
 })
 
 server.get('*', async (req, res) => {
+
     const { app, router } = createApp()
 
     await router.push(req.url)
@@ -76,6 +77,7 @@ server.get('*', async (req, res) => {
         res.setHeader('Content-Type', 'text/html')
         res.send(html)
     })
+    throw new Error('BROKEN')
 })
 
 let port = process.env.PORT;
