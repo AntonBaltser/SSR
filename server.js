@@ -77,7 +77,7 @@ server.get('*', async (req, res) => {
         res.setHeader('Content-Type', 'text/html')
         res.send(html)
     })
-    throw new Error('BROKEN')
+    // throw new Error('BROKEN')
 })
 
 let port = process.env.PORT;
