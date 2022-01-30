@@ -27,7 +27,7 @@ const createApp = require(appPath).default
 server.use('/img', express.static(path.join(__dirname, './dist/client', 'img')))
 server.use('/js', express.static(path.join(__dirname, './dist/client', 'js')))
 server.use('/css', express.static(path.join(__dirname, './dist/client', 'css')))
-server.use('/favicon.ico', express.static(path.join(__dirname, './dist/client', 'favicon.ico')))
+server.use('/favicon1.ico', express.static(path.join(__dirname, './dist/client', 'favicon1.ico')))
 
 
 
