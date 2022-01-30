@@ -83,13 +83,13 @@ export default {
   data() {
 
     return {
-      file: "http://localhost:9000/project/registration/no-foto.png",
+      file: "http://192.168.1.72:9000/project/registration/no-foto.png",
       userName: '',
       email: '',
       password1: '',
       password2: '',
       image: '',
-      avatar: "http://localhost:9000/project/registration/no-foto.png"
+      avatar: "http://192.168.1.72:9000/project/registration/no-foto.png"
     }
   },
   methods: {
@@ -117,7 +117,7 @@ export default {
     },
     async verificationName() {
       try {
-        const res = await axios.post('http://localhost:8080/verificationName',
+        const res = await axios.post('https://damp-brook-60565.herokuapp.com/verificationName',
             {'name': this.userName});
         console.log(res)
       } catch (e) {
@@ -126,7 +126,7 @@ export default {
     },
    async verificationEmail() {
       try {
-        const res = await axios.post('http://localhost:8080/verificationEmail',
+        const res = await axios.post('https://damp-brook-60565.herokuapp.com/verificationEmail',
             {'email': this.email});
         console.log(res)
       } catch (e) {
@@ -142,7 +142,7 @@ async nextToAnket() {
           this.fileName =  this.userName + '.' + nameAvatarFile?.[nameAvatarFile.length - 1]
           console.log(this.fileName)
           this.image['name'] = this.fileName
-          const res = await axios.post('http://localhost:8080/uploadPhoto',
+          const res = await axios.post('https://damp-brook-60565.herokuapp.com/uploadPhoto',
               this.image
           );
           console.log(res)

@@ -90,7 +90,7 @@ export default {
 
     async finalRegistration1() {
       try {
-        const res = await axios.post('http://localhost:8080/registration',
+        const res = await axios.post('https://damp-brook-60565.herokuapp.com/registration',
             store.getters.finalRegistration);
         console.log(res)
       } catch (e) {

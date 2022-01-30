@@ -4,7 +4,7 @@
 <!--    <div class="modal-dialog modal-dialog-centered text-center">-->
 <!--      <div class="modal-content justify-content-center align-items-center">-->
   <form class="col-8">
-  <img class="m-4" src="http://localhost:9000/project/registration/users/dsf.jpg" alt="" width="72" height="57">
+  <img class="m-4" src="http://192.168.1.72:9000/project/registration/users/dsf.jpg" alt="" width="72" height="57">
   <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
 
@@ -51,7 +51,7 @@ export default {
 
     async finalRegistration1() {
       try {
-        const res = await axios.post(`http://localhost:8080/auth`,
+        const res = await axios.post(`https://damp-brook-60565.herokuapp.com/auth`,
             store.getters.loginAutrntification, {withCredentials: true}
         );
         console.log(res)

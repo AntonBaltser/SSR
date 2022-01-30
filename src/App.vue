@@ -30,7 +30,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 .body-bg {
-  background-image: url('http://localhost:9000/project/background/background.jpg');
+  background-image: url('http://192.168.1.72:9000/project/background/background.jpg');
   background-size: cover;
 }
 </style>

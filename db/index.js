@@ -1,8 +1,8 @@
-const Sequilize = require('sequelize');
+const Sequelize = require('sequelize');
 
-const sequelize = new Sequilize('project_VUE', 'antony', 'bp024W', {
+const sequelize = new Sequelize('project_VUE', 'antony', 'bp024W', {
     dialect: "mysql",
-    host: "localhost"
+    host: "192.168.1.72:3306"
 });
 
 
