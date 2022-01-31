@@ -71,6 +71,7 @@ data(){
      this.registrationForm = true
    },
    regToAnket(){
+     console.log('index to article show')
      this.registrationForm = false
      this.questionary = true
    },

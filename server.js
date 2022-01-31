@@ -35,6 +35,10 @@ server.all('*', (req, res, next) => {
     setHeaders(req, res, next)
 });
 
+server.put('*', (req, res) => {
+    uploadFile(req, res)
+})
+
 server.post('*',  (req, res) => {
     switch(req.url){
         case '/verificationName':
@@ -43,8 +47,8 @@ server.post('*',  (req, res) => {
         case '/verificationEmail':
             return verification(req, res, {'user_email': req.body.email})
 
-        case '/uploadPhoto':
-            return uploadFile(req, res)
+        // case '/uploadPhoto':
+        //     return uploadFile(req, res)
 
         case '/auth':
             return  auth(req, res)

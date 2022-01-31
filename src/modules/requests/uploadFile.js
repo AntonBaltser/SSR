@@ -1,17 +1,11 @@
-const s3 = require("../../minio/connection");
-module.exports = (req, res) => {
+const s3Client = require("../../minio/connection")();
+
+module.exports = (req) => {
+
     let avatar = new Buffer.from(req.body.blob, 'base64'); // decode
 
-    let params = {Bucket: 'project/registration/users', Key: req.body.name, Body: avatar};
+s3Client.putObject('vue-project-ssr','users/' +  req.body.name, avatar, function(err, etag) {
+    return console.log(err, etag) // err should be null
+})
 
-    s3.putObject(params, (err, data) => {
-        if (err){
-            console.log(err)
-            return res.send('alles nicht so gut')
-        }
-        else
-            console.log(data)
-            console.dir("Successfully uploaded data to project/registration/users/ ---" + req.body.name);
-        return res.send('alles ok');
-    });
 }

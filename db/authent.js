@@ -1,19 +1,19 @@
-const Sequilize = require('sequelize');
+const Sequelize = require('sequelize');
 
 module.exports = function (sequelize){
     return sequelize.define('authent',{
         id:{
-            type: Sequilize.INTEGER,
+            type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false
         },
         login: {
-            type: Sequilize.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         cookie: {
-            type: Sequilize.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
     },{

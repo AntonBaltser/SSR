@@ -1,39 +1,39 @@
-const Sequilize = require('sequelize');
+const Sequelize = require('sequelize');
 
 module.exports = function (sequelize){
     return sequelize.define('users',{
         id:{
-            type: Sequilize.INTEGER,
+            type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false
         },
         user_name: {
-            type: Sequilize.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         user_email: {
-            type: Sequilize.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         user_password: {
-            type: Sequilize.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         country: {
-            type: Sequilize.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
-        language: {
-            type: Sequilize.STRING,
+        launguage: {
+            type: Sequelize.STRING,
             allowNull: false
         },
         gender: {
-            type: Sequilize.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         avatarURL: {
-            type: Sequilize.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
     },{
