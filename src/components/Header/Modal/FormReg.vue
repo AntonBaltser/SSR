@@ -69,7 +69,7 @@
 <script>
 
 import axios from "axios";
-import MyInputFileComponent from '../../../components/Mixins/MyInputFileComponent'
+import MyInputFileComponent from '../../MyInputFileComponent'
 import store from '../../../store'
 
 export default {
@@ -91,7 +91,6 @@ export default {
   methods: {
 
     handleFileBlob(){
-      console.log(this.file.name)
 
       const blobToBase64 = (blob, cb) => {
         const reader = new FileReader();
@@ -113,24 +112,26 @@ export default {
     },
     async verificationName() {
       try {
-        const res = await axios.post('https://damp-brook-60565.herokuapp.com/verificationName',
+        const res = await axios.post('http://localhost:8080/verificationName',
             {'name': this.userName});
         console.log(res)
+        if(!res.data) alert('Данное имя уже существует')
       } catch (e) {
         console.error(e);
       }
     },
    async verificationEmail() {
       try {
-        const res = await axios.post('https://damp-brook-60565.herokuapp.com/verificationEmail',
+        const res = await axios.post('http://localhost:8080/verificationEmail',
             {'email': this.email});
         console.log(res)
+        if(!res.data) alert('Данное Email уже существует')
       } catch (e) {
         console.error(e);
       }
 },
 
- nextToAnket() {
+async nextToAnket() {
 console.log('function to article')
       if (this.password1 === this.password2) {
 
@@ -138,23 +139,22 @@ console.log('function to article')
           this.fileName =  this.userName + '.' + nameAvatarFile?.[nameAvatarFile.length - 1]
           console.log(this.fileName)
           this.image['name'] = this.fileName
-           axios.put('https://damp-brook-60565.herokuapp.com/uploadPhoto',
+         await axios.post('http://localhost:8080/uploadPhoto',
               this.image
-          )
-              .then(res => {
+          ).then(res => {
           console.log(res)
         }).catch(err => {
               // what now?
               console.log(err);
             })
-         store.commit('registration', {
+        await store.commit('registration', {
           'name': this.userName,
           'email': this.email,
           'password': this.password1,
           'fileName': this.fileName
         })
 
-        this.$emit('toAnket')
+        await this.$emit('toAnket')
       }
       else alert('Пароль не совпадаает')
     }

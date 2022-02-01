@@ -2,8 +2,8 @@ import { createRouter } from 'vue-router'
 // import MyUser from '../components/MyUser.vue'
 const routes = [
     { path: '/', component: () => import('../components/Header') },
-    // { path: '/auth', component: () => import('../components/Header') },
-    // { path: '/registration', component: () => import('../components/Header') },
+    { path: '/home', component: () => import('../components/home') },
+
 ]
 
 export default function(history) {

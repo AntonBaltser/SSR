@@ -16,6 +16,11 @@ module.exports = function (sequelize){
             type: Sequelize.STRING,
             allowNull: false
         },
+        time_login: {
+            type: 'TIMESTAMP',
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+            allowNull: false
+        }
     },{
         timestamps: false,
         tableName: 'authent'

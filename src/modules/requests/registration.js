@@ -5,7 +5,6 @@ const Users = db.users;
 module.exports = (req, res) =>{
     let reqBody = req.body
     Users.create({
-        'id': '11',
         'user_name': reqBody.name,
         'user_email': reqBody.email,
         'user_password': kachPassword(reqBody.email, reqBody.password),
@@ -14,5 +13,6 @@ module.exports = (req, res) =>{
         'launguage': reqBody.language,
         'gender': reqBody.gender
     })
+    res.redirect('/home')
     res.send("ok")
 }

@@ -3,7 +3,9 @@ const express = require('express')
 const fs = require('fs')
 const { renderToString } = require('@vue/server-renderer')
 const manifest = require('./dist/server/ssr-manifest.json')
-
+const db = require('./db');
+const Users = db.users;
+const Authent = db.authent
 const server = express()
 
 
@@ -35,20 +37,20 @@ server.all('*', (req, res, next) => {
     setHeaders(req, res, next)
 });
 
-server.put('*', (req, res) => {
-    uploadFile(req, res)
-})
+// server.put('*', (req, res) => {
+//     uploadFile(req, res)
+// })
 
-server.post('*',  (req, res) => {
+server.post('*',  async (req, res) => {
     switch(req.url){
         case '/verificationName':
-            return verification(req, res, {'user_name': req.body.name})
+            return ( await verification(req, res, {'user_name': req.body.name}, Users) ? res.send(true) : res.send(false) )
 
         case '/verificationEmail':
-            return verification(req, res, {'user_email': req.body.email})
+            return ( await verification(req, res, {'user_email': req.body.email}, Users) ? res.send(true) : res.send(false) )
 
-        // case '/uploadPhoto':
-        //     return uploadFile(req, res)
+        case '/uploadPhoto':
+            return uploadFile(req, res)
 
         case '/auth':
             return  auth(req, res)
@@ -62,6 +64,26 @@ server.post('*',  (req, res) => {
 })
 
 server.get('*', async (req, res) => {
+
+    switch(req.url){
+        case '/home':
+            return( await verification(req, res, {
+                'cookie': req.cookies.token,
+                'login': req.cookies.login
+            }, Authent) ? true : res.redirect('/')
+            )
+
+        // default:
+        //     return "";
+    }
+    //
+    // if(req.cookies.login !== undefined || req.cookies.token !== undefined){
+    //     res.redirect('/');
+    //     return false;
+    // }
+
+
+
 
     const { app, router } = createApp()
 
@@ -81,7 +103,6 @@ server.get('*', async (req, res) => {
         res.setHeader('Content-Type', 'text/html')
         res.send(html)
     })
-    // throw new Error('BROKEN')
 })
 
 let port = process.env.PORT;
@@ -92,8 +113,3 @@ server.listen(port, () => {
     console.log('Server working ', port )
 });
 
-// let app = server.listen(8080, () =>{
-//     let host = app.address().address
-//     let port = app.address().port
-//     console.log("Сервер рабтает по адрессу http://%s:%s", host, port)
-// })

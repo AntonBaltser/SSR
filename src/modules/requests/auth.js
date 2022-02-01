@@ -27,7 +27,8 @@ module.exports = async (req, res) => {
 
         res.cookie('token', token);
         res.cookie('login', login);
-        res.send(login)
+        res.redirect('/home')
+        // res.send(login)
         Authent.create({
             'login': login,
             'cookie': token

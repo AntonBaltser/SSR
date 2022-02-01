@@ -1,44 +1,26 @@
 <template>
-    <div class="header">
-      <div class="user-page" id="modalBase">
-        <button
-            id="loginBtn"
-            type="button"
-            class="btn btn-primary"
-            @click="openModal = true, openL = true"
-        >Войти</button>
-
-      <button
-          id="regBtn"
-          class="btn btn-secondary"
-          type="button"
-          @click="openModal = true, openR = true"
-      >Зарегистрироваться</button>
-    </div>
-    </div>
+  <MyButtonsAuthorization/>
   <ModalBase
-      @close="openModal = false, openL = false, openR = false "
-      v-if="openModal"
-      :openLog = "openL"
-      :openReg = "openR"
+      v-if="stateModalBase.openModal"
   />
-
 </template>
 
 <script>
-
+import store from '../../store'
+import MyButtonsAuthorization from "../MyButtonsAuthorization";
 import ModalBase from "./Modal"
 
 export default {
   components: {
     ModalBase,
+    MyButtonsAuthorization
   },
   data(){
     return{
-      stateParams: '',
-      openModal: false,
-      openL: false,
-      openR: false
+      stateModalBase: store.getters.modalState
+      // openModal: false,
+      // openL: false,
+      // openR: false
     }
   },
 
@@ -51,17 +33,12 @@ export default {
   display: flex;
   justify-content: flex-end;
   position: relative;
-  background: #d49fa7;
+  background: #ab5f35;
   padding: 5px;
   right: 0;
   width: 100%;
   height: 100px;
 }
-.btn{
-/*  height: 5vh;*/
-/*  line-height: 5vh;*/
-/*  padding: 0 1rem;*/
-  margin:  5vh 10px;
-}
+
 
 </style>

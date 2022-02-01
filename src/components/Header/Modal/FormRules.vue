@@ -23,7 +23,7 @@
           class="btn btn-primary"
           type="button"
           :disabled="!isRegaleReaded || !isRegaleChecked"
-          @click="agreement "
+          @click="toFormReg"
       >Согласится</button>
 
       <button
@@ -37,25 +37,35 @@
 </template>
 
 <script>
-import ScrollHandler from "../../Mixins/ScrollHandler";
+import store from '../../../store'
+import ScrollHandler from "../../Mixins/ScrollHandler"
+
 export default {
   mixins: [ScrollHandler],
   data(){
     return {
       isRegaleReaded: false,
       isRegaleChecked: false,
-      rule: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!"
+      rule: store.getters.rules
     }
   },
   methods:{
     onScrollEnd(){
       this.isRegaleReaded = true
     },
-    agreement(){
-      this.$emit('toRegForm')
+    toFormReg(){
+      // this.$emit('toRegForm')
+      store.commit('formRegState', {
+          rulesForm: false,
+          regForm: true
+      })
     },
     closeRegal(){
-      this.$emit('close')
+      store.commit('modalState', {
+        penModal: false,
+        openL: false,
+        openR: false
+      })
     }
   }
 }

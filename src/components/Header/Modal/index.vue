@@ -14,21 +14,21 @@
       </div>
 
           <LoginForm
-                    v-if="openLog"
+                    v-if="stateModal.openLogin"
           />
 
           <RulesForm
-              v-if="openRules"
+              v-if="stateModal.openRegistration"
               @close="closeModal"
-              @toRegForm="modalReg"
+              @toRegForm="registrationForm = true"
           />
-
+<!--        openRules = false,-->
           <RegForm
-              v-if="registrationForm"
-              @toAnket="regToAnket"
+              v-if="stateFromReg.registrationForm"
+              @toAnket="registrationForm = false, questionary = true"
           />
           <QuestForm
-              v-if="questionary"
+              v-if="stateFromReg.questionary"
               @close="closeModal"
           />
 
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import store from '../../../store'
 import LoginForm from "./FormLogin";
 import  RulesForm from "./FormRules";
 import RegForm from "./FormReg";
@@ -54,29 +55,31 @@ export default {
     RegForm,
     QuestForm
   },
-  props:      {
-    openLog: Boolean,
-    openReg: Boolean
-  },
+
 data(){
     return {
-      openRules: this.$props.openReg,
-      registrationForm : false,
-      questionary: false,
+      stateModal:  store.getters.modalState,
+      // registrationForm : false,
+      // questionary: false,
+      stateFromReg: store.getters.modalStateFormReg
     }
   },
  methods: {
-   modalReg(){
-     this.openRules = false
-     this.registrationForm = true
-   },
-   regToAnket(){
-     console.log('index to article show')
-     this.registrationForm = false
-     this.questionary = true
-   },
+   // modalReg(){
+   //   this.openRules = false
+   //   this.registrationForm = true
+   // },
+   // regToAnket(){
+   //   this.registrationForm = false
+   //   this.questionary = true
+   // },
     closeModal(){
-      this.$emit('close')
+      // this.$emit('close')
+      store.commit('modalState', {
+        penModal: false,
+        openL: false,
+        openR: false
+      })
     }
   }
 }

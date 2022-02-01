@@ -36,6 +36,11 @@ module.exports = function (sequelize){
             type: Sequelize.STRING,
             allowNull: false
         },
+        time_stamp: {
+                type: 'TIMESTAMP',
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+                allowNull: false
+              }
     },{
         timestamps: false,
         tableName: 'users'

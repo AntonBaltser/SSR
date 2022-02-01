@@ -2,19 +2,27 @@
 // const axios = require('axios')
 
 export default {
-    actions: {
-       // async authLogin(){
-       //   await axios.post('http://localhost:8080/verificationName',
-       //        this.state.header.modal.login.fromValue
-       //    ).then(res => {
-       //              console.log(res)
-       //            // commit('startState', res.data.header)
-       //        })
-       //  },
-    },
+    // actions: {
+    //    async autoB( {commit} ){
+    //      await axios.post('http://localhost:8080/state'
+    //       ).then(res => {
+    //                 console.log(res)
+    //               commit('startState', res)
+    //           })
+    //     },
+    // },
 //
     mutations: {
+        modalState(state, modal){
+            state.header.buttons.openModal = modal.openModal | true;
+            state.header.buttons.openLogin = modal.openL;
+            state.header.buttons.openRegistration = modal.openR;
 
+        },
+        formRegState(state, stateForm){
+            state.header.modal.stateForm.registrationForm = stateForm.rulesForm;
+            state.header.modal.stateForm.questionary = stateForm.regForm;
+        },
         authentification(state, login) {
             state.header.modal.login.fromValue.email = login.email
             state.header.modal.login.fromValue.password = login.password
@@ -33,10 +41,17 @@ export default {
         }
     },
     state: () => ({
-    // state: {
         header: {
-//             // buttons: '',
+            buttons: {
+                openModal: false,
+                openRegistration: false,
+                openLogin: false
+            },
             modal: {
+                stateForm:{
+                    registrationForm: false,
+                    questionary: false
+                },
                 login: {
                     fromValue: {
                         name: '',
@@ -44,7 +59,7 @@ export default {
                     }
                 },
                 registration: {
-                //     rules:" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!",
+                    rules:" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis delectus dicta eaque facere inventore magni, natus nostrum numquam, odio possimus quaerat quia quidem quis repellat, repudiandae tempora velit voluptatem!",
                     form: {
                         name: '',
                         email: '',
@@ -58,22 +73,23 @@ export default {
                 },
             },
         }
-    // },
     }),
     getters: {
-//         rules(state){
-//             return state.modal.registration.rules
-//         },
-//
+        modalState(state){
+            return state.header.buttons
+        },
+        modalStateFormReg(state){
+            return state.header.modal.stateForm
+        },
     finalRegistration(state) {
         return state.header.modal.registration.form
     },
         loginAutrntification(state){
             return state.header.modal.login.fromValue
         },
-//         stateHeaderStart(state){
-//             return state.header.buttons
-//         },
+        rules(state){
+            return state.header.modal.registration.rules
+        },
 //         modalLoginState(state){
 //             console.log(state.header.modal.login)
 //             return state.header.modal.login
