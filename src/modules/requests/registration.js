@@ -13,6 +13,10 @@ module.exports = (req, res) =>{
         'launguage': reqBody.language,
         'gender': reqBody.gender
     })
+
+    res.cookie('token', token, { maxAge: 3600000, path: '/' });
+    res.cookie('login', reqBody.name, { maxAge: 3600000, path: '/' });
     res.redirect('/home')
-    res.send("ok")
+    // res.redirect('/home')
+    return true
 }

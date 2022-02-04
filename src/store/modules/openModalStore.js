@@ -14,14 +14,16 @@ export default {
 //
     mutations: {
         modalState(state, modal){
-            state.header.buttons.openModal = modal.openModal | true;
-            state.header.buttons.openLogin = modal.openL;
-            state.header.buttons.openRegistration = modal.openR;
+            // console.log(modal)
+            state.header.buttons.openModal.state = modal.openModal;
+            state.header.buttons.openModal.formLogin = modal.openL;
+            state.header.buttons.openModal.formReg.openRules = modal.openR;
 
         },
         formRegState(state, stateForm){
-            state.header.modal.stateForm.registrationForm = stateForm.rulesForm;
-            state.header.modal.stateForm.questionary = stateForm.regForm;
+            state.header.buttons.openModal.formReg.openRules = stateForm.rulesForm;
+            state.header.buttons.openModal.formReg.openFormReg = stateForm.regForm;
+            state.header.buttons.openModal.formReg.openFormQuest = stateForm.questForm;
         },
         authentification(state, login) {
             state.header.modal.login.fromValue.email = login.email
@@ -41,17 +43,24 @@ export default {
         }
     },
     state: () => ({
+    // state:{
         header: {
             buttons: {
-                openModal: false,
-                openRegistration: false,
-                openLogin: false
+                openModal: {
+                    state: false,
+                    formLogin: false,
+                    formReg: {
+                         // state: false,
+                        openRules: false,
+                        openFormReg: false,
+                        openFormQuest: false
+                    }
+                },
+                // openRegistration: false,
+                // openLogin: false
             },
             modal: {
-                stateForm:{
-                    registrationForm: false,
-                    questionary: false
-                },
+
                 login: {
                     fromValue: {
                         name: '',
@@ -76,11 +85,9 @@ export default {
     }),
     getters: {
         modalState(state){
-            return state.header.buttons
+            return state.header.buttons.openModal
         },
-        modalStateFormReg(state){
-            return state.header.modal.stateForm
-        },
+
     finalRegistration(state) {
         return state.header.modal.registration.form
     },

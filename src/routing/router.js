@@ -1,7 +1,7 @@
 import { createRouter } from 'vue-router'
 // import MyUser from '../components/MyUser.vue'
 const routes = [
-    { path: '/', component: () => import('../components/Header') },
+    { path: '/', component: () => import('../components/start') },
     { path: '/home', component: () => import('../components/home') },
 
 ]

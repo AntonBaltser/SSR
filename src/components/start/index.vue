@@ -1,24 +1,37 @@
 <template>
-
 <header>
-  <ButtonClose/>
-  </header>
-<Container/>
+  <MyButtonsAuthorization/>
+</header>
+
+  <Modal
+      v-if="stateModalBase.state"
+  />
+  <Container/>
 </template>
 
 <script>
-import ButtonClose from '../MyButtonsClose'
+import MyButtonsAuthorization from '../MyButtonsAuthorization'
 // import Header from '../Header'
+import Modal from '../Modal'
 import Container from "../content/Container";
+import store from "../../store";
 
 export default {
   components: {
-    Container,
+    MyButtonsAuthorization,
     // Header,
-    ButtonClose
-  }
+    Modal,
+    Container
+  },
+  data() {
+
+    return {
+      stateModalBase: store.getters.modalState
+    }
+}
 }
 </script>
+
 <style lang="scss" scoped>
 header{
   display: flex;

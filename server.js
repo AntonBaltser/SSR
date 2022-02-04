@@ -56,7 +56,8 @@ server.post('*',  async (req, res) => {
             return  auth(req, res)
 
         case '/registration':
-            return   registration(req, res)
+            return ( registration(req, res) ? res.send(true) : res.send(false) )
+
 
         default:
             return "";
@@ -70,18 +71,23 @@ server.get('*', async (req, res) => {
             return( await verification(req, res, {
                 'cookie': req.cookies.token,
                 'login': req.cookies.login
-            }, Authent) ? true : res.redirect('/')
+            }, Authent) ? true : res.redirect('/'))
+        case '/exit':
+            return (
+                res.clearCookie('login')
+                && res.clearCookie('token')
+                && res.redirect('/')
             )
 
+
         // default:
-        //     return "";
+            // return "";
     }
     //
     // if(req.cookies.login !== undefined || req.cookies.token !== undefined){
     //     res.redirect('/');
     //     return false;
     // }
-
 
 
 

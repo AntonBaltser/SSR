@@ -25,14 +25,15 @@ module.exports = async (req, res) => {
             });
     if(loginAuth === true) {
 
-        res.cookie('token', token);
-        res.cookie('login', login);
+        res.cookie('token', token, { maxAge: 3600000, path: '/' });
+        res.cookie('login', login, { maxAge: 3600000, path: '/' });
         res.redirect('/home')
-        // res.send(login)
-        Authent.create({
+
+       await Authent.create({
             'login': login,
             'cookie': token
         })
+        return login
     }
-    else res.send(login)
+    else return login
 }

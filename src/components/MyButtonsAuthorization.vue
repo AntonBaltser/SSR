@@ -25,9 +25,9 @@ import store from '../store'
 export default {
   data(){
    return {
-     openModal: Boolean,
-     openL: Boolean,
-     openR: Boolean
+     openModal: '',
+     openL: '',
+     openR: ''
    }
 
   },
@@ -47,9 +47,6 @@ methods: {
 
 <style>
 .btn{
-  /*  height: 5vh;*/
-  /*  line-height: 5vh;*/
-  /*  padding: 0 1rem;*/
   margin:  5vh 10px;
 }
 </style>
